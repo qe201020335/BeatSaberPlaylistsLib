@@ -1,29 +1,21 @@
 ﻿#if BeatSaber
 extern alias BeatSaber;
-using System;
-
 namespace BeatSaberPlaylistsLib.Types
 {
     /// <summary>
     /// Interface for the basic data of a song.
     /// </summary>
-    public partial interface ISong : BeatSaber.IPreviewBeatmapLevel
+    public partial interface ISong
     {
         /// <summary>
-        /// The <see cref="BeatSaber.IPreviewBeatmapLevel"/> this playlist song is matched to, if any.
+        /// The <see cref="BeatSaber::BeatmapLevel"/> this playlist song is matched to, if any.
         /// Depends on SongCore being finished loading songs.
         /// </summary>
-        BeatSaber.IPreviewBeatmapLevel? PreviewBeatmapLevel { get; }
+        PlaylistLevel? BeatmapLevel { get; set; }
         /// <summary>
-        /// Sets the game's associated <see cref="BeatSaber.IPreviewBeatmapLevel"/>.
-        /// </summary>
-        /// <param name="beatmap"></param>
-        internal void SetPreviewBeatmap(BeatSaber.IPreviewBeatmapLevel beatmap);
-        /// <summary>
-        /// Refreshes the associated <see cref="PreviewBeatmapLevel"/> from SongCore.
+        /// Refreshes the associated <see cref="BeatmapLevel"/> from SongCore.
         /// </summary>
         public void RefreshFromSongCore();
-
     }
 }
 #endif

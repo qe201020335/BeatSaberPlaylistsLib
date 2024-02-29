@@ -190,11 +190,7 @@ namespace BeatSaberPlaylistsLib.Types
             Identifiers &= ~identifier;
         }
 
-
-        /// <summary>
-        /// Adds a <see cref="Difficulty"/> to the <see cref="PlaylistSong"/>.
-        /// </summary>
-        /// <param name="diff"></param>
+        /// <inheritdoc/>
         public void AddDifficulty(Difficulty diff)
         {
 
