@@ -39,7 +39,7 @@ namespace BeatSaberPlaylistsLib.Types
         {
             if (LevelId != null && LevelId.Length > 0)
             {
-                // PreviewBeatmapLevel = SongCore.Loader.GetLevelById(LevelId);
+                BeatmapLevel = (PlaylistLevel?)SongCore.Loader.GetLevelById(LevelId);
             }
         }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
