@@ -89,13 +89,14 @@ namespace BeatSaberPlaylistsLib
         /// <returns></returns>
         public static Stream? GetStreamFromBeatmap(BeatSaber::BeatmapLevel? previewBeatmapLevel)
         {
-            if (previewBeatmapLevel is { hasPrecalculatedData: false })
+            if (previewBeatmapLevel is { hasPrecalculatedData: false } && 
+                SongCore.Loader.CustomLevelLoader._loadedBeatmapSaveData.TryGetValue(previewBeatmapLevel.levelID, out var savedata))
             {
-                var standardLevelInfoSaveData = SongCore.Collections.GetStandardLevelInfoSaveData(previewBeatmapLevel.levelID);
+                var standardLevelInfoSaveData = savedata.standardLevelInfoSaveData;
                 if (standardLevelInfoSaveData != null)
                 {
                     var fileName = standardLevelInfoSaveData.coverImageFilename;
-                    var customLevelPath = SongCore.Collections.GetCustomLevelPath(previewBeatmapLevel.levelID);
+                    var customLevelPath = savedata.customLevelFolderInfo.folderPath;
                     if (!string.IsNullOrEmpty(fileName))
                     {
                         return new FileStream(Path.Combine(customLevelPath, fileName), FileMode.Open, FileAccess.Read, FileShare.Read, 0x4096, true);
